@@ -1,0 +1,21 @@
+name: deploy-on-AWS-EC2
+
+run-name: deploy-on-AWS-EC2
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Habilita a VM do actions a acessar os objetos do repositório
+      - uses: actions/setup-node@v4 # Instala o node na VM do actions
+        with:
+          node-version: '20'
+      - run: echo "hello code"
