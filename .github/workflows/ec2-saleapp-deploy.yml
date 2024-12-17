@@ -1,0 +1,28 @@
+name: deploy-saleapp-on-AWS-EC2
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Habilita a VM do actions a acessar os objetos do repositório
+      - name: Deploy na instancia EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_INSTANCE_PRIVATE_KEY}} # Chave SSH
+          USER: ec2-user # Usuário SSH na instância EC2
+          HOST: ec2-34-232-74-209.compute-1.amazonaws.com
+        run: |
+          echo "$PRIVATE_KEY" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -i deploy_key.pem $USER@$HOST "cd /apps/saleapp/backend/app && git pull origin main"
+          ssh -i deploy_key.pem $USER@$HOST "stop_services.sh && remove.sh && build.sh && up_services.sh"
+          
+      
+      
