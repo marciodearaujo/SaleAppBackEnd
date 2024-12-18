@@ -20,10 +20,6 @@ jobs:
           HOST: ec2-34-232-74-209.compute-1.amazonaws.com
           AVOID: ${{ env.AVOID_HOST_CHECK}}
         run: |
-          mkdir ~/.ssh
-          cd ~/.ssh
-          touch known_hosts
-          echo "$AVOID" > ~/.ssh/known_hosts
           echo "$PRIVATE_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
           ssh -i deploy_key.pem $USER@$HOST "cd /apps/saleapp/backend/app && git pull origin main && stop_services.sh && remove.sh && build.sh && up_services.sh"
