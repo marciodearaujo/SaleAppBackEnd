@@ -18,10 +18,12 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }} # Chave SSH
           USER: ec2-user # Usuário SSH na instância EC2
           HOST: ec2-34-232-74-209.compute-1.amazonaws.com
+          AVOID: ${{ env.AVOID_HOST_CHECK}}
         run: |
-          echo "$PRIVATE_KEY" > deploy_key
-          chmod 400 deploy_key
-          ssh -i deploy_key $USER@$HOST "cd /apps/saleapp/backend/app && git pull origin main && stop_services.sh && remove.sh && build.sh && up_services.sh"
+          echo "$AVOID" > ~/.ssh/known_hosts
+          echo "$PRIVATE_KEY" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -i deploy_key.pem $USER@$HOST "cd /apps/saleapp/backend/app && git pull origin main && stop_services.sh && remove.sh && build.sh && up_services.sh"
       
           
       
