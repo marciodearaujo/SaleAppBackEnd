@@ -20,7 +20,7 @@ jobs:
           HOST: ec2-34-232-74-209.compute-1.amazonaws.com
           AVOID: ${{ env.AVOID_HOST_CHECK}}
         run: |
-          mkdir -p ~/.ssh/known_hosts
+          touch ~/.ssh/known_hosts
           echo "$AVOID" > ~/.ssh/known_hosts
           echo "$PRIVATE_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
