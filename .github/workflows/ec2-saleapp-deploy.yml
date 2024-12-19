@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > ApplicationServerKeyPair.pem
           chmod 600 ApplicationServerKeyPair.pem
-          ssh -i ApplicationServerKeyPair.pem $USER@$HOST
+          ssh -T -i ApplicationServerKeyPair.pem $USER@$HOST
           echo "user $USER connected to $HOST by ssh"
       
           
