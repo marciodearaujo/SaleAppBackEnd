@@ -9,10 +9,11 @@ jobs:
     steps:
       - name: Deploy na instancia EC2
         env:
+          PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
           USER: ubuntu # Usuário SSH na instância EC2
           HOST: 44.215.252.109
         run: |
-          echo "${{ secrets.AWS_EC2_PRIVATE_KEY }}" > ApplicationServerKeyPair.pem
+          echo "$PRIVATE_KEY" > ApplicationServerKeyPair.pem
           chmod 600 ApplicationServerKeyPair.pem
           ssh -i ApplicationServerKeyPair.pem $USER@$HOST
           echo "user $USER connected to $HOST by ssh"
