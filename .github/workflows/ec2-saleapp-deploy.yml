@@ -18,9 +18,9 @@ jobs:
           USER: ubuntu # Usuário SSH na instância EC2
           HOST: 44.215.252.109
         run: |
-          echo "$PRIVATE_KEY" > deploy_key.pem
-          chmod 700 deploy_key.pem
-          ssh -i deploy_key.pem $USER@$HOST
+          echo "$PRIVATE_KEY" > ApplicationServerKeyPair.pem
+          chmod 700 ApplicationServerKeyPair.pem
+          ssh -i ApplicationServerKeyPair.pem $USER@$HOST
           echo "user $USER connected to $HOST by ssh"
       
           
