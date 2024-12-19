@@ -18,7 +18,6 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }} # Chave SSH
           USER: ec2-user # Usuário SSH na instância EC2
           HOST: ec2-34-232-74-209.compute-1.amazonaws.com
-          AVOID: ${{ env.AVOID_HOST_CHECK}}
         run: |
           echo "$PRIVATE_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
