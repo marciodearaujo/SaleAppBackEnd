@@ -13,9 +13,12 @@ jobs:
           USER: ubuntu # Usuário SSH na instância EC2
           HOST: 44.215.252.109
         run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
           echo "$PRIVATE_KEY" > ApplicationServerKeyPair.pem
           chmod 600 ApplicationServerKeyPair.pem
-          ssh -o StrictHostKeyChecking=no -T -i ApplicationServerKeyPair.pem $USER@$HOST
+          ssh -T -i ApplicationServerKeyPair.pem $USER@$HOST
           echo "user $USER connected to $HOST by ssh"
       
           
