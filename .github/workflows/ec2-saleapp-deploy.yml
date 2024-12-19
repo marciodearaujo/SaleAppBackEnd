@@ -20,7 +20,7 @@ jobs:
           HOST: 44.215.252.109
         run: |
           echo "$PRIVATE_KEY" > deploy_key.pem
-          chmod 600 deploy_key.pem
+          chmod 700 deploy_key.pem
           ssh -i deploy_key.pem $USER@$HOST
           echo "user $USER connected to $HOST by ssh"
       
