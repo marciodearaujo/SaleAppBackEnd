@@ -18,7 +18,7 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
           echo "$PRIVATE_KEY" > ApplicationServerKeyPair.pem
           chmod 600 ApplicationServerKeyPair.pem
-          ssh -i ApplicationServerKeyPair.pem $USER@$HOST "cd /home/ubuntu/saleapp/app/backend && git pull origin main && git add . && git commit -m \"deploy done\" && /home/ubuntu/deploy-script.sh"
+          ssh -i ApplicationServerKeyPair.pem $USER@$HOST "cd /home/ubuntu/saleapp/app/backend && git pull origin main && /home/ubuntu/deploy-script.sh"
       
           
       
