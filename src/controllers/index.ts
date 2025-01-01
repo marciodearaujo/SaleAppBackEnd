@@ -9,3 +9,5 @@ export * from './product-sale.controller';
 export * from './sale-item.controller';
 export * from './sale-payment-portion.controller';
 export * from './payment-portion-sale.controller';
+export * from './portion.controller';
+export * from './payment-portion.controller';
