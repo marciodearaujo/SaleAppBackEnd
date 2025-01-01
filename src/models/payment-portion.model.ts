@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Sale} from './sale.model';
 
 @model({
@@ -46,12 +46,12 @@ export class PaymentPortion extends Entity {
   @property({
     type: 'date',
     mysql: {
-      column: 'payment-date'
+      column: 'payment_date'
     }
   })
   paymentDate?: string;
 
-  @belongsTo(() => Sale,{keyFrom: 'saleId'}, {name: 'sale_id'})
+  @belongsTo(() => Sale, {keyFrom: 'saleId'}, {name: 'sale_id'})
   saleId: number;
 
   constructor(data?: Partial<PaymentPortion>) {
